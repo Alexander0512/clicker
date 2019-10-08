@@ -1,0 +1,30 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="section">
+  <div style="text-align:center">
+    <h1>Welcome to {{ title }}!</h1>
+  </div>
+  <button class="btn" (click)="saveGame()">save</button>
+  <button class="btn" (click)="loadGame()">load</button>
+
+  <router-outlet></router-outlet>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-5"></div>
+      <div class="col"></div>
+      <div class="row">
+        <div class="col-5"></div>
+        <div class="col position_money_count">
+          <h1>Money: {{ money }}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col"></div>
+        <div class="col">
+          <app-click (getMoney)="getMoney($event)"></app-click>
+        </div>
+        <div class="col"></div>
+      </div>
+      <div class="row"></div>
+    </div>
+  </div>
+</div>
