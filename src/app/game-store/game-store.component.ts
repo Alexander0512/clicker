@@ -9,14 +9,16 @@ export class GameStoreComponent implements OnInit {
   @Input() moneyCount;
   @Input() workerCount;
   @Output() addWorker = new EventEmitter();
-  localWorkerCount:number;
+  localWorkerCount: number;
   nextCost: number;
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.localWorkerCount = this.workerCount;
+    this.nextCost = Math.floor(10 * Math.pow(1.1, this.localWorkerCount));
+  }
   addAWorker() {
     console.log(this.moneyCount);
-
 
     var workerCost = Math.floor(10 * Math.pow(1.1, this.workerCount));
     if (this.moneyCount >= workerCost) {
@@ -26,6 +28,5 @@ export class GameStoreComponent implements OnInit {
     // let workerTotal = workers;
     this.nextCost = Math.floor(10 * Math.pow(1.1, this.localWorkerCount));
     this.addWorker.emit(workerCost);
-
   }
 }

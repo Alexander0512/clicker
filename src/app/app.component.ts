@@ -45,7 +45,8 @@ export class AppComponent implements OnInit {
 
   saveGame() {
     this.save = {
-      money: this.money
+      money: this.money,
+      workers: this.workers
     };
     console.log(this.save);
     this.saveGameService.saveGame(this.save);
@@ -55,6 +56,9 @@ export class AppComponent implements OnInit {
     this.save = this.saveGameService.loadGame();
     if (this.save.money !== undefined) {
       this.money = this.save.money;
+    }
+    if (this.save.workers !== undefined) {
+      this.workers = this.save.workers;
     }
     console.log(this.save);
   }
