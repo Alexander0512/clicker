@@ -1,2 +1,14 @@
 .position_money_count {
+  text-align: center;
+}
+.borders {
+  border: solid black 2px;
+}
+.store {
+  z-index:1;
+  max-height: 10000px;
+  border: solid black 2px;
+  border-bottom: none;
+}
+.money_count_row {
 }

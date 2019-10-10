@@ -1,30 +1,50 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="section">
-  <div style="text-align:center">
-    <h1>Welcome to {{ title }}!</h1>
-  </div>
-  <button class="btn" (click)="saveGame()">save</button>
-  <button class="btn" (click)="loadGame()">load</button>
+  <div style="text-align:center"></div>
 
   <router-outlet></router-outlet>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-5"></div>
-      <div class="col"></div>
-      <div class="row">
-        <div class="col-5"></div>
-        <div class="col position_money_count">
-          <h1>Money: {{ money }}</h1>
-        </div>
+      <div class="col-4"></div>
+      <div class="col-4 option_position borders">
+        <app-options-bar
+          (save)="saveGame()"
+          (load)="loadGame()"
+          (openOptions)="openOptions()"
+          (closeOptions)="closeOptions()"
+        ></app-options-bar>
       </div>
+      <div class="col-4"></div>
+    </div>
+    <div *ngIf="!optionsOpen">
       <div class="row">
-        <div class="col"></div>
+        <div class="col-4"></div>
         <div class="col">
           <app-click (getMoney)="getMoney($event)"></app-click>
         </div>
-        <div class="col"></div>
+        <div class="col store">
+          <app-game-store [workerCount]="workers" [moneyCount]="money" (addWorker)="addWorker($event)"></app-game-store>
+        </div>
       </div>
-      <div class="row"></div>
+    </div>
+
+    <div class="row money_count_row">
+      <div class="col-4"></div>
+      <div class="col-4 position_money_count">
+        <div class="col-4"></div>
+        <h1>Money: {{ money }}</h1>
+      </div>
+    </div>
+    <div class="row"></div>
+    <div *ngIf="optionsOpen">
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+          <app-options-screen></app-options-screen>
+        </div>
+        <div class="row"></div>
+        <div class="row"></div>
+      </div>
     </div>
   </div>
 </div>

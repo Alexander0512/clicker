@@ -17,4 +17,5 @@ export class ClickComponent implements OnInit {
     this.getMoney.emit(this.money);
     // this.appComponent.console.log(this.money);
   }
+  
 }

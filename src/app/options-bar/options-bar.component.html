@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col save_load">
+    <button class="btn btn-info mt-1 float-left save" (click)="saveGame()">
+      save
+    </button>
+    <button class="btn btn-info mt-1 float-right" (click)="loadGame()">
+      load
+    </button>
+  </div>
+</div>
+<div class="row title">
+  <h1 class="title">{{ title }}!</h1>
+</div>
+<div class="row">
+  <div class="col options_stats">
+    <div *ngIf="!optionsOpen">
+      <button class="btn btn-info pb-2 float-left options" (click)="options()">
+        options
+      </button>
+    </div>
+    <div *ngIf="optionsOpen">
+      <button class="btn btn-info pb-2 float-left options" (click)="closeOptionsTab()">
+        close 
+      </button>
+    </div>
+    <button class="btn btn-info pb-2 float-right" (click)="loadGame()">
+      stats
+    </button>
+  </div>
+</div>
