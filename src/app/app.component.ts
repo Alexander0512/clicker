@@ -13,11 +13,12 @@ export class AppComponent implements OnInit {
   optionsScreen: OptionsScreenComponent;
   money: number = 0;
   workers: number = 0;
+  grandmas: number = 0;
   save: Save;
   toSave = true;
   optionsOpen = false;
   submitted = false;
-  mps:number = 0;
+  mps: number = 0;
   constructor(private SaveGame: SaveGameService) {
     this.saveGameService = SaveGame;
   }
@@ -25,7 +26,7 @@ export class AppComponent implements OnInit {
     localStorage.setItem("password", "12345678");
     this.loadGame();
     setInterval(() => {
-      this.autoClicker(this.workers);
+      this.autoClicker();
     }, 1000);
     this.addMps();
   }
@@ -38,11 +39,11 @@ export class AppComponent implements OnInit {
   getMoney(number) {
     this.money++;
   }
-  autoClicker(num) {
-    this.money = this.money + num;
+  autoClicker() {
+    this.money = this.money + this.workers + (this.grandmas * 4);
   }
   addMps() {
-    this.mps = this.workers;
+    this.mps = this.workers + (this.grandmas * 4);
     // this.mps = this.workers + (this.workers *5) ;
   }
   addWorker(workerCost) {
@@ -50,6 +51,14 @@ export class AppComponent implements OnInit {
       this.money = this.money - workerCost;
       console.log(workerCost);
       this.workers++;
+      this.addMps();
+    }
+  }
+  addGrandma(grandmaCost) {
+    if (grandmaCost <= this.money) {
+      this.money = this.money - grandmaCost;
+      console.log(this.money);
+      this.grandmas++;
       this.addMps();
     }
   }
@@ -63,7 +72,8 @@ export class AppComponent implements OnInit {
   saveGame() {
     this.save = {
       money: this.money,
-      workers: this.workers
+      workers: this.workers,
+      grandmas: this.grandmas
     };
     console.log(this.save);
     this.saveGameService.saveGame(this.save);
@@ -77,6 +87,9 @@ export class AppComponent implements OnInit {
       }
       if (this.save.workers !== undefined) {
         this.workers = this.save.workers;
+      }
+      if (this.save.grandmas !== undefined) {
+        this.grandmas = this.save.grandmas;
       }
     }
     console.log(this.save);

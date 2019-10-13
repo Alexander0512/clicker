@@ -1,14 +1,18 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="section">
   <div style="text-align:center"></div>
- 
+
   <router-outlet></router-outlet>
   <div class="container-fluid">
     <div class="row">
       <div class="col-4 border">
-          <button class="btn btn-danger" (click)="deleteWorkers()">Delete workers</button>
-          <button class="btn btn-danger m-1" (click)="deleteSave()">Delete save data</button>
-        </div>
+        <button class="btn btn-danger" (click)="deleteWorkers()">
+          Delete workers
+        </button>
+        <button class="btn btn-danger m-1" (click)="deleteSave()">
+          Delete save data
+        </button>
+      </div>
       <div class="col-4 option_position borders">
         <app-options-bar
           (save)="saveGame()"
@@ -29,7 +33,9 @@
           <app-game-store
             [workerCount]="workers"
             [moneyCount]="money"
+            [grandmaCount]="grandmas"
             (addWorker)="addWorker($event)"
+            (addGrandma)="addGrandma($event)"
           ></app-game-store>
         </div>
       </div>
@@ -41,7 +47,6 @@
         <div class="col-4"></div>
         <h1>Money: {{ money }}</h1>
         <h1>Mps: {{ mps }}</h1>
-
       </div>
     </div>
     <div class="row"></div>
