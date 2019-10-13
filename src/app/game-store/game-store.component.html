@@ -1,7 +1,18 @@
 <div class="row">
-    <div class="col">
-        <button class="btn btn-dark" (click)="addAWorker()">Add worker</button>
-        <p>Workers: {{localWorkerCount}}</p>
-        <p>Cost: {{nextCost}}</p>
+  <div class="col ">
+    <div class="row worker">
+      <button class="btn btn-light ml-2 my-2" (click)="addAWorker()">
+        Add worker
+      </button>
+      <span class="ml-2 mr-2">Workers: {{ localWorkerCount }}</span>
+      <span>Cost: {{ nextCost }}</span>
     </div>
+    <div class="row worker">
+      <button class="btn btn-light ml-2 my-2" (click)="addAWorker()">
+        Add worker
+      </button>
+      <span class="ml-2 mr-2">Workers: {{ localWorkerCount }}</span>
+      <span>Cost: {{ nextCost }}</span>
+    </div>
+  </div>
 </div>

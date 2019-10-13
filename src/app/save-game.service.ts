@@ -12,7 +12,9 @@ export class SaveGameService {
     localStorage.setItem("gameSave", JSON.stringify(save));
   }
   loadGame() {
-    let save: Save;
     return JSON.parse(localStorage.getItem("gameSave"));
+  }
+  deleteSave() {
+    localStorage.removeItem("gameSave");
   }
 }

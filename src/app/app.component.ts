@@ -11,38 +11,55 @@ export class AppComponent implements OnInit {
   title = "clicker";
   saveGameService: SaveGameService;
   optionsScreen: OptionsScreenComponent;
-  money: number;
+  money: number = 0;
   workers: number = 0;
   save: Save;
+  toSave = true;
   optionsOpen = false;
-
+  submitted = false;
+  mps:number = 0;
   constructor(private SaveGame: SaveGameService) {
     this.saveGameService = SaveGame;
   }
   ngOnInit() {
+    localStorage.setItem("password", "12345678");
     this.loadGame();
     setInterval(() => {
       this.autoClicker(this.workers);
     }, 1000);
+    this.addMps();
+  }
+  @HostListener("window:beforeunload", ["$event"]) unloadHandler(event: Event) {
+    if (this.toSave) {
+      this.saveGame();
+    }
   }
 
-  @HostListener("window:beforeunload", ["$event"]) unloadHandler(event: Event) {
-    this.saveGame();
-  }
   getMoney(number) {
     this.money++;
   }
   autoClicker(num) {
     this.money = this.money + num;
   }
+  addMps() {
+    this.mps = this.workers;
+    // this.mps = this.workers + (this.workers *5) ;
+  }
   addWorker(workerCost) {
     if (workerCost < this.money) {
       this.money = this.money - workerCost;
       console.log(workerCost);
       this.workers++;
+      this.addMps();
     }
   }
-
+  deleteWorkers() {
+    this.workers = 0;
+  }
+  deleteSave() {
+    this.saveGameService.deleteSave();
+    this.toSave = false;
+  }
   saveGame() {
     this.save = {
       money: this.money,
@@ -54,11 +71,13 @@ export class AppComponent implements OnInit {
 
   loadGame() {
     this.save = this.saveGameService.loadGame();
-    if (this.save.money !== undefined) {
-      this.money = this.save.money;
-    }
-    if (this.save.workers !== undefined) {
-      this.workers = this.save.workers;
+    if (this.save !== null) {
+      if (this.save.money !== null || this.save.money !== undefined) {
+        this.money = this.save.money;
+      }
+      if (this.save.workers !== undefined) {
+        this.workers = this.save.workers;
+      }
     }
     console.log(this.save);
   }
