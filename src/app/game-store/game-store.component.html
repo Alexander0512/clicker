@@ -6,6 +6,13 @@
       </button>
       <span class="ml-2 mr-2">Workers: {{ localWorkerCount }}</span>
       <span>Cost: {{ nextCostWorker }}</span>
+      <ng-template #tipContentWorker
+        >Mps: {{ localWorkerCount * 4 }}<br />
+        Single worker:1mps <b></b>!</ng-template
+      >
+      <span [ngbTooltip]="tipContentWorker">
+        <i class="fas fa-info-circle"></i>
+      </span>
     </div>
     <div class="row worker">
       <button class="btn btn-light ml-2 my-2" (click)="addAGrandma()">
@@ -13,7 +20,13 @@
       </button>
       <span class="ml-2 mr-2">Grandmas: {{ localGrandmaCount }}</span>
       <span>Cost: {{ nextCostGrandma }}</span>
-      <span></span>
+      <ng-template #tipContent
+        >Mps: {{ localGrandmaCount * 4 }}<br />
+        Single grandma:4mps <b></b>!</ng-template
+      >
+      <span [ngbTooltip]="tipContent">
+        <i class="fas fa-info-circle"></i>
+      </span>
     </div>
   </div>
 </div>

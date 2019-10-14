@@ -4,12 +4,11 @@ import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ClickComponent } from "./click/click.component";
-import { SaveGameService } from "./save-game.service";
 import { OptionsBarComponent } from "./options-bar/options-bar.component";
 import { OptionsScreenComponent } from "./options-screen/options-screen.component";
 import { GameStoreComponent } from "./game-store/game-store.component";
 import { FormsModule } from "@angular/forms";
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from "ngx-toastr";
 @NgModule({
   declarations: [
@@ -23,6 +22,7 @@ import { ToastrModule } from "ngx-toastr";
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    NgbModule,
     ToastrModule.forRoot()
   ],
   providers: [],
