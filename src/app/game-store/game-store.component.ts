@@ -41,7 +41,7 @@ export class GameStoreComponent implements OnInit {
   addAGrandma() {
     var grandmaCost = Math.floor(100 * Math.pow(1.2, this.workerCount));
     if (this.moneyCount >= grandmaCost) {
-      this.localWorkerCount = this.grandmaCount + 1;
+      this.localGrandmaCount = this.grandmaCount + 1;
     } else {
       this.toastr.error("Not enough money!", "Error");
     }
